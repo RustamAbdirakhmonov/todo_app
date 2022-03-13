@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:todo_app/screens/daily_plan_screen.dart';
+
+import '../widgets/active_projects.dart';
+import '../widgets/task_action.dart';
 
 class MyHomePageScreen extends StatefulWidget {
   // static const routeArgs='/my_home_page';
@@ -11,9 +15,9 @@ class MyHomePageScreen extends StatefulWidget {
 }
 
 class _MyHomePageScreenState extends State<MyHomePageScreen> {
-  bool _pinned = true;
-  bool _snap = false;
-  bool _floating = false;
+  final bool _pinned = true;
+  final bool _snap = false;
+  final bool _floating = false;
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +43,8 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
             floating: _floating,
             expandedHeight: height * .24,
             toolbarHeight: height * .11,
-            actions: [
-              const Align(
+            actions: const [
+               Align(
                   alignment: Alignment.topLeft,
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
@@ -56,30 +60,29 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   CircularPercentIndicator(
-                    radius: width * .09,
-                    lineWidth: 5.0,
+                    radius: (width/height)*60,
+                    lineWidth: 3.0,
                     animation: true,
                     percent: .4,
                     center: Container(
-                      padding: EdgeInsets.all(3),
+                      padding: const EdgeInsets.all(3),
                       child: CircleAvatar(
-                        maxRadius: 25,
+                        maxRadius:(width/height)*60-6,
                         minRadius: 10,
-                        backgroundImage: AssetImage('assets/images/user.jpg'),
+                        backgroundImage: const AssetImage('assets/images/user.jpg'),
                       ),
                     ),
                     circularStrokeCap: CircularStrokeCap.round,
                     progressColor: Colors.deepOrange,
-                    
+                    backgroundColor: Colors.white.withOpacity(0),
                   ),
-
                   Padding(
-                    padding: EdgeInsets.only(bottom: 15, left: 15),
+                    padding: const EdgeInsets.only(bottom: 15, left: 15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
+                        const Text(
                           'Philip Mccoy',
                           style: TextStyle(
                               color: Colors.black,
@@ -102,10 +105,10 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                 decoration: BoxDecoration(
                     color: Colors.deepOrange.withOpacity(.8),
                     borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(30))),
+                        const BorderRadius.vertical(bottom: Radius.circular(30))),
               ),
               expandedTitleScale: 1.8,
-              titlePadding: EdgeInsets.only(left: 20, bottom: 5),
+              titlePadding: const EdgeInsets.only(left: 20, bottom: 5),
             ),
           ),
           SliverList(
@@ -113,7 +116,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
               (BuildContext context, int index) {
                 return SingleChildScrollView(
                   child: Container(
-                    padding: EdgeInsets.only(top: 15, left: 15, right: 15),
+                    padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
                     child: Column(
                       children: <Widget>[
                         Row(
@@ -130,7 +133,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                               ),
                               width: 50,
                               height: 50,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.calendar_today,
                                 color: Colors.white,
                                 size: 25,
@@ -138,24 +141,29 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
-                        TasksAction(
-                            icon: Icon(
-                              Icons.schedule_outlined,
-                              color: Colors.white,
-                              size: 30,
-                            ),
-                            title: 'To Do',
-                            currentTasks: 5,
-                            taskPosition: 'started',
-                            color: Colors.red,
-                            completed: 1),
-                        SizedBox(
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.of(context).pushNamed(DailyPlanScreen.routeArgs);
+                          },
+                          child: const TasksAction(
+                              icon: Icon(
+                                Icons.schedule_outlined,
+                                color: Colors.white,
+                                size: 30,
+                              ),
+                              title: 'To Do',
+                              currentTasks: 5,
+                              taskPosition: 'started',
+                              color: Colors.red,
+                              completed: 1),
+                        ),
+                        const SizedBox(
                           height: 20,
                         ),
-                        TasksAction(
+                        const TasksAction(
                             icon: Icon(
                               Icons.wb_sunny_outlined,
                               color: Colors.white,
@@ -166,11 +174,11 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                             taskPosition: 'started',
                             color: Colors.orange,
                             completed: 1),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TasksAction(
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.skip_next_outlined,
                               color: Colors.white,
                               size: 30,
@@ -180,7 +188,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                             taskPosition: 'completed',
                             color: Colors.blue.withOpacity(.8),
                             completed: 18),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Align(
@@ -189,13 +197,13 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                               'Active Projects',
                               style: Theme.of(context).textTheme.headline5,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            ActiveProjects(
+                            const ActiveProjects(
                                 color: Colors.teal,
                                 projectTitle: 'Medical App',
                                 progress: 9,
@@ -207,7 +215,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                                 percentage: .75),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         ),
                         Row(
@@ -225,7 +233,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                                 percentage: .48),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 30,
                         )
                       ],
@@ -243,137 +251,3 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
   }
 }
 
-class TasksAction extends StatelessWidget {
-  final Icon icon;
-  final String title;
-  final int currentTasks;
-  final String taskPosition;
-  final int completed;
-  final Color color;
-
-  const TasksAction(
-      {Key? key,
-      required this.icon,
-      required this.title,
-      required this.currentTasks,
-      required this.taskPosition,
-      required this.color,
-      required this.completed})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-                color: color, borderRadius: BorderRadius.circular(100)),
-            child: icon,
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w800),
-              ),
-              Row(
-                children: <Widget>[
-                  Text(
-                    '${currentTasks} tasks now .',
-                    style: TextStyle(
-                        color: Colors.black.withOpacity(.6),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    '${completed} ${taskPosition}',
-                    style: TextStyle(
-                        color: Colors.black.withOpacity(.6),
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20),
-                  )
-                ],
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class ActiveProjects extends StatelessWidget {
-  final Color color;
-  final String projectTitle;
-  final int progress;
-  final double percentage;
-
-  const ActiveProjects(
-      {Key? key,
-      required this.color,
-      required this.projectTitle,
-      required this.progress,
-      required this.percentage})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Container(
-      width: width * .45,
-      height: width * .62,
-      decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(40)),
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Align(
-            alignment: Alignment.topCenter,
-            child: CircularPercentIndicator(
-              radius: width * .15,
-              lineWidth: 8.0,
-              animation: true,
-              percent: percentage,
-              center: new Text(
-                "${(100 * percentage).toInt()}%",
-                style:
-                    new TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),
-              ),
-              circularStrokeCap: CircularStrokeCap.round,
-              progressColor: Colors.white,
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                projectTitle,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-              ),
-              Text(
-                '${progress} hours progress',
-                style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.black.withOpacity(.5),
-                    fontWeight: FontWeight.w300),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
