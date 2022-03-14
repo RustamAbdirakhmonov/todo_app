@@ -16,7 +16,7 @@ class DateWeekDay extends StatelessWidget {
         children: <Widget>[
           Text(DateFormat('EEE').format(DateTime.now().add(Duration(days: day))),style: TextStyle(color: color,fontSize: 16,),),
           SizedBox(height: 3,),
-          Text(DateFormat('d').format(DateTime.now().add(Duration(days: weekDay))),style: TextStyle(color: color,fontSize: 16,),),
+          Text(DateFormat('d').format(DateTime.now().add(Duration(days: weekDay))),style: TextStyle(color: color,fontSize: 16,fontWeight: FontWeight.w700),),
 
 
         ],

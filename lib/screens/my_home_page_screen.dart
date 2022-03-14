@@ -63,7 +63,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
                     radius: (width/height)*60,
                     lineWidth: 3.0,
                     animation: true,
-                    percent: .4,
+                    percent: .55,
                     center: Container(
                       padding: const EdgeInsets.all(3),
                       child: CircleAvatar(
@@ -103,7 +103,7 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
               ),
               background: Container(
                 decoration: BoxDecoration(
-                    color: Colors.deepOrange.withOpacity(.8),
+                    color:Color.fromRGBO(233, 190, 124, 1),
                     borderRadius:
                         const BorderRadius.vertical(bottom: Radius.circular(30))),
               ),
