@@ -206,7 +206,7 @@ class TaskList extends StatelessWidget {
                    padding: EdgeInsets.only(top: 10,bottom: 15,left: 10),
                  
                    width: width,
-                   height: height*.15,
+                   height: height*.24,
                    child:Row(
                      children: <Widget>[
                        Column(
@@ -216,7 +216,7 @@ class TaskList extends StatelessWidget {
                              child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].starTime),style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
                            ),
                            Container(
-                             child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].starTime),style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600)),
+                             child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].endTime),style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600)),
                            ),
 
                          ],
@@ -250,7 +250,7 @@ class TaskList extends StatelessWidget {
                         },
                         child: Container(
                           width: width*.7,
-                          height: height*.1,
+                          height: height*.2,
                           padding: EdgeInsets.all(15),
                           decoration: BoxDecoration(
                             color:Colors.pink.shade200,
@@ -260,7 +260,7 @@ class TaskList extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              Text(taskProvider.getList[index].title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+                              Text(taskProvider.getList[index].title,style: TextStyle(fontSize: 24,fontWeight: FontWeight.w600,color: Colors.black),),
                               Text(taskProvider.getList[index].description,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.white),),
                             ],
                           )

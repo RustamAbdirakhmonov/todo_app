@@ -50,9 +50,9 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
 flutter_native_splash:
-  background_image: assets/images/splash.jpg
+  background_image: assets/images/splash.png
   android_disable_fullscreen: true
-  image: assets/images/splash.jpg
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspecn
 # The following section is specific to Flutter.
