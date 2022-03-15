@@ -213,17 +213,60 @@ class TaskList extends StatelessWidget {
 
                          children: <Widget>[
                            Container(
-                             child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].starTime)),
+                             child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].starTime),style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600),),
                            ),
                            Container(
-                             child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].starTime)),
+                             child: Text(DateFormat('hh:mm').format(taskProvider.getList[index].starTime),style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600)),
                            ),
 
                          ],
                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                          crossAxisAlignment: CrossAxisAlignment.start,
-                       )
+                       ),
+                      SizedBox(width: 20,),
+                      GestureDetector(
+                        onLongPress: (){
+                          showDialog(
 
+                              context: context,
+                              builder: (BuildContext context) => new AlertDialog(
+                                title: new Text('Delete'),
+                                content: new Text(taskProvider.getList[index].title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+                                actions: <Widget>[
+                                  new IconButton(
+                                      icon: new Icon(Icons.close),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      }),
+                                  new IconButton(
+                                      icon: new Icon(Icons.delete,color: Colors.red,),
+                                      onPressed: () {
+                                        taskProvider.deleteItem(taskProvider.getList[index].description);
+                                        Navigator.pop(context);
+
+                                      }),
+                                ],
+                              ));
+                        },
+                        child: Container(
+                          width: width*.7,
+                          height: height*.1,
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color:Colors.pink.shade200,
+                            borderRadius: BorderRadius.circular(30)
+                          ),
+                          child:Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(taskProvider.getList[index].title,style: TextStyle(fontSize: 20,fontWeight: FontWeight.w600,color: Colors.black),),
+                              Text(taskProvider.getList[index].description,style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.white),),
+                            ],
+                          )
+
+                        ),
+                      )
                      ],
 
                  ),

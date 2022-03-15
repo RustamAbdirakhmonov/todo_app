@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:todo_app/screens/daily_plan_screen.dart';
 
@@ -18,7 +19,26 @@ class _MyHomePageScreenState extends State<MyHomePageScreen> {
   final bool _pinned = true;
   final bool _snap = false;
   final bool _floating = false;
+  @override
+  void initState() {
+    super.initState();
+    initialization();
+  }
 
+  void initialization() async {
+    // This is where you can initialize the resources needed by your app while
+    // the splash screen is displayed.  Remove the following example because
+    // delaying the user experience is a bad design practice!
+    // ignore_for_file: avoid_print
+    print('ready in 3...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 2...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('ready in 1...');
+    await Future.delayed(const Duration(seconds: 1));
+    print('go!');
+    FlutterNativeSplash.remove();
+  }
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

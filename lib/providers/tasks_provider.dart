@@ -12,4 +12,8 @@ class TasksProvider extends ChangeNotifier{
  List<AddTask> get getList{
     return _taskList;
   }
+  void deleteItem (String item){
+    item!=null?_taskList.removeWhere((element) => element.description==item):null;
+    notifyListeners();
+  }
 }
